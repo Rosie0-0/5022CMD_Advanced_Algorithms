@@ -1,4 +1,5 @@
 #Question 1: Hashing
+import time
 
 class Medicine:
     #Constructor
@@ -21,8 +22,8 @@ class HashTable:
 
     #Hash Function
     def hash_function(self, product_id):
-        hash_value = sum(ord(char) for char in product_id) #Total integer Unicode code point
-        return hash_value % self.size #Get index
+        hash_value = sum(ord(char) for char in product_id)  #Total integer Unicode code point
+        return hash_value % self.size                       #Get index
 
     #Find slot (done)
     def find_slot(self, product_id):
@@ -52,18 +53,63 @@ class HashTable:
     #Search Function
     #def search(self, product_id):
 
+        #Display medicine
+        # for medicine in medicines:
+        #     if medicine.product_id == product_id:
+        #         print(medicine)
+
+#Linear Search
+def linear_search(medicine_array, product_id):
+    print()
+
 #Performance Testing
+def performance_testing():
+    print()
 
 def main():
     #Create hash table with size 23
     hash_table = HashTable(23)
 
-    #User Input
-    medicine = Medicine("1042", "Paracetamol 500mg", 5.90, 120)
-    #Display the Pharmacy menu
-    print("==== Pharmacy Inventory System ====")
-    print("Product Found!")
-    print(medicine)
+    #Create One-dimensional array
+    medicine_array = []
+
+    #Create Predefine medicines
+    predefined_medicines = [
+        Medicine("1042", "Paracetamol 500mg", 5.90, 120),
+        Medicine("1043", "Ibuprofen 200mg", 7.80, 80),
+        Medicine("1044", "Lisinopril 10mg", 6.80, 100),
+        Medicine("1045", "Vitamin C 500mg", 8.00, 90)
+    ]
+
+    #Insert predefined medicines into HashTable & Array
+    for medicine in predefined_medicines:
+        hash_table.insert(medicine)
+        medicine_array.append(medicine)
+
+    #Menu Loop
+    while True:
+        print("==== Pharmacy Inventory System ====")
+        print("1. Insert Product")
+        print("2. Search Product")
+        print("3. Exit")
+
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            #Insert user input to the hash table
+            print()
+        elif choice == "2":
+            #Search user input
+            print()
+            #1. Hash Table Search
+            #2. Array Table Search
+            #Show result + both times
+
+        elif choice == "3":
+            #Exit program
+            print("Exiting Inventory System. Goodbye!")
+            break
+        else:
+            print("Enter a valid choice.\n")
 
 
 if __name__ == "__main__":
