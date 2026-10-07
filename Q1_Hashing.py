@@ -17,15 +17,14 @@ class HashTable:
     #Constructor
     def __init__(self, size):
         self.size = size
-        #self.table = [None] * size
-        self.table: list[Medicine | None] = [None] * size
+        self.table = [None] * size
 
     #Hash Function
     def hash_function(self, product_id):
         hash_value = sum(ord(char) for char in product_id)  #Total integer Unicode code point
         return hash_value % self.size                       #Get index
 
-    #Find slot (done)
+    #Find slot: find existing index through product_id (done)
     def find_slot(self, product_id):
         index = self.hash_function(product_id)
         start = index
@@ -51,12 +50,19 @@ class HashTable:
         return index
 
     #Search Function
-    #def search(self, product_id):
+    def search(self, product_id):
+        #Get the index of the specific product_id
+        status, index = self.find_slot(product_id)
+        if status == "duplicate":
+            return self.table[index]    #product_id found
+        return None                     #Not found
 
-        #Display medicine
-        # for medicine in medicines:
-        #     if medicine.product_id == product_id:
-        #         print(medicine)
+    #Display Function
+    def display(self):
+        print("Product List")
+        for index, item in enumerate(self.table):
+            if item is not None:
+                print(item)
 
 #Linear Search
 def linear_search(medicine_array, product_id):
@@ -95,8 +101,27 @@ def main():
 
         choice = input("Enter your choice: ")
         if choice == "1":
-            #Insert user input to the hash table
-            print()
+            #Display Current Product
+            hash_table.display()
+            #Get user input
+            product_id = input("Enter product ID: ").strip() #remove accidental spaces
+            product_name = input("Enter product name: ").strip()
+            try:
+                price = float(input("Enter price: "))
+                quantity = int(input("Enter stock quantity: "))
+            except ValueError:
+                print("Invalid price or quantity. Please enter numbers only. \n")
+                continue # return to the menu
+
+            #Insert into hash table, then array if successful
+            medicine = Medicine(product_id, product_name, price, quantity)
+            result = hash_table.insert(medicine) #return index / "Table full" / "Duplicate product"
+            #check the result is the slot number
+            if isinstance(result, int):
+                print(f"Product inserted successfully into slot [{result}]\n")
+            else:
+                print(f"{result}\n")
+
         elif choice == "2":
             #Search user input
             print()
