@@ -196,7 +196,7 @@ def main():
                 print("Course code cannot be empty. Please try again.")
                 continue
             if find_course(courses, course_code) is not None:
-                print("Course Already Exists")
+                print("Course code already exists.")
                 continue
             #Verify course_name
             course_name = input("Enter new course name: ").strip()
@@ -204,7 +204,7 @@ def main():
                 print("Course name cannot be empty. Please try again.")
                 continue
             if course_name_exists(courses, course_name):
-                print("Course name already exists")
+                print("Course name already exists.")
                 continue
             #Verify credit hours
             try:
