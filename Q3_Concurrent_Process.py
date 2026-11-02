@@ -66,7 +66,7 @@ def run_experiment(title, run_function):
         results, time_elapsed = run_function()
         total_time += time_elapsed
         print(f"Round {round_number:<2}: {format_results(results)} | T = {time_elapsed:,} ns")
-
+    print(f"Total T ({title})   : {total_time:,} ns")
     average_time = total_time // ROUNDS
     print(f"Average T ({title}) : {average_time:,} ns")
     return average_time
