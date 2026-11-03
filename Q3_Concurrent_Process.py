@@ -9,7 +9,7 @@ ROUNDS = 10             #Number of testing rounds
 def fibonacci(n):
     if n<=1:
         return n                                #Base case: Fib(0) = 0, Fib(1) = 1
-    return fibonacci(n - 1) + fibonacci(n - 2)  #Fib(n) = Fib(n-1) + Fib(n-2)
+    return fibonacci(n - 1) + fibonacci(n - 2)  #Recursive case: Fib(n) = Fib(n-1) + Fib(n-2)
 
 #Thread task: calculate one Fibonacci number and record its own start and end time
 def fibonacci_task(n, index, results, start_times, end_times):
